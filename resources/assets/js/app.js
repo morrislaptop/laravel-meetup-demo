@@ -10,6 +10,12 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
+ * Init Firebase.
+ */
+var VueFire = require('vuefire')
+Vue.use(VueFire)
+
+/**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
