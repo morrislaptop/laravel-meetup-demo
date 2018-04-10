@@ -1,22 +1,27 @@
 <template>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>When</th>
-                <th>Where</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="booking in bookings" :key="booking.name">
-                <th>{{ booking.name }}</th>
-                <td>{{ booking.when }}</td>
-                <td>{{ booking.where }}</td>
-                <td>{{ booking.status }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <h1>All Bookings ordered by cost greater than 10</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>When</th>
+                    <th>Where</th>
+                    <th>Status</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="booking in bookings" :key="booking.name">
+                    <th>{{ booking.name }}</th>
+                    <td>{{ booking.when }}</td>
+                    <td>{{ booking.where }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>{{ booking.cost }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
@@ -34,7 +39,7 @@
 
     export default {
         firebase: {
-            bookings: db.ref('bookings').orderByChild('status').equalTo('paid'),
+            bookings: db.ref('bookings').orderByChild('cost').startAt(11),
         }
     }
 </script>
