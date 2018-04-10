@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="booking in bookings" :key="booking.name">
+                <tr v-for="booking in bookings" :key="booking['.key']">
                     <th>{{ booking.name }}</th>
                     <td>{{ booking.when }}</td>
                     <td>{{ booking.where }}</td>
@@ -21,6 +21,7 @@
                 </tr>
             </tbody>
         </table>
+        <p><button class="primary" @click="create">Create a Booking</button></p>
     </div>
 </template>
 
@@ -40,6 +41,18 @@
     export default {
         firebase: {
             bookings: db.ref('bookings').orderByChild('cost').startAt(11),
+        },
+
+        methods: {
+            create() {
+                this.$firebaseRefs.bookings.push({
+                    name: 'Test Push',
+                    when: 'Someday',
+                    where: 'Somewhere', 
+                    status: 'fake',
+                    cost: 42
+                })
+            }
         }
     }
 </script>
