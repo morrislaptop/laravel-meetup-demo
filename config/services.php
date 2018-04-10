@@ -40,6 +40,8 @@ return [
         'client_id'    => env('FIREBASE_CLIENT_ID'),
         'client_email' => env('FIREBASE_CLIENT_EMAIL'),
         'private_key'  => str_replace('\n', "\n", env('FIREBASE_PRIVATE_KEY')),
+        'database_url' => env('FIREBASE_DB_URL'),
+        'secret' => env('FIREBASE_SECRET')
     ],
 
 ];
