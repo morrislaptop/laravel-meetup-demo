@@ -62408,6 +62408,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 var firebase = __webpack_require__(125);
 
@@ -62424,6 +62425,18 @@ var db = firebaseApp.database();
 /* harmony default export */ __webpack_exports__["default"] = ({
     firebase: {
         bookings: db.ref('bookings').orderByChild('cost').startAt(11)
+    },
+
+    methods: {
+        create: function create() {
+            this.$firebaseRefs.bookings.push({
+                name: 'Test Push',
+                when: 'Someday',
+                where: 'Somewhere',
+                status: 'fake',
+                cost: 42
+            });
+        }
     }
 });
 
@@ -74557,7 +74570,7 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.bookings, function(booking) {
-          return _c("tr", { key: booking.name }, [
+          return _c("tr", { key: booking[".key"] }, [
             _c("th", [_vm._v(_vm._s(booking.name))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(booking.when))]),
@@ -74570,6 +74583,12 @@ var render = function() {
           ])
         })
       )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _c("button", { staticClass: "primary", on: { click: _vm.create } }, [
+        _vm._v("Create a Booking")
+      ])
     ])
   ])
 }
